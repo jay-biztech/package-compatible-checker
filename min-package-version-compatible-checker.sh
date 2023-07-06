@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo "PHP $2 Compatiblity checking..."
 
 CURRENT_VERSION=`composer show $1 | grep 'versions' | grep -o -E '\*\ .+' | cut -d' ' -f2 | cut -d',' -f1`
@@ -15,7 +15,7 @@ echo "Git url: $URL"
 # Remove temp directory if exist
 rm -rf temp
 
-# Clone project in temp directory
+# Clone project into temp directory
 git clone $URL temp &> /dev/null
 
 echo -ne '#############             (66%)\r'
@@ -26,38 +26,28 @@ cd temp
 # Fetch all tags
 git fetch --all --tags &> /dev/null
 
-OUTPUT=''
-COMPATIBLE='NO'
-
 for crt_tag in $(git tag)
 do
    git checkout $crt_tag &> /dev/null
 
    cd .github/workflows &> /dev/null
 
+   OUTPUT=''
+
    for FILE in *;
    do
       if [[ -f $FILE ]]
       then
         OUTPUT=`cat $FILE | grep $2`
-
-        if [[ $OUTPUT == *"$2"* ]]; then
-          COMPATIBLE='YES'
-          echo "Minimum compatible package version: $crt_tag, Compatible: Yes"
-          break
-        else
-          echo "Package version: $crt_tag, Compatible: No"
-        fi
       fi
    done
 
-   if [[ $COMPATIBLE == "YES" ]]; then
+   if [[ $OUTPUT =~ $2 ]];
+   then
+     echo "Minimum compatible package version: $crt_tag, Compatible: Yes"
      break
+   else
+     echo "Package version: $crt_tag, Compatible: No"
    fi
+
 done
-
-echo -ne '#######################   (100%)\r'
-echo -ne '\n'
-
-# Remove temp directory
-rm -rf $BASEDIR/temp
