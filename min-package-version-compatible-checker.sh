@@ -42,7 +42,7 @@ do
       fi
    done
 
-   if [[ $OUTPUT =~ $2 ]];
+   if [[ $OUTPUT = *"$2"* ]];
    then
      echo "Minimum compatible package version: $crt_tag, Compatible: Yes"
      break
