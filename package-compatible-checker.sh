@@ -1,5 +1,5 @@
 #!/bin/sh
-echo "PHP 8.2 Compatiblity checking..."
+echo "PHP $2 Compatiblity checking..."
 
 CURRENT_VERSION=`composer show $1 | grep 'versions' | grep -o -E '\*\ .+' | cut -d' ' -f2 | cut -d',' -f1`
 echo "Current version of package: $CURRENT_VERSION"
@@ -36,10 +36,10 @@ cd .github/workflows
 OUTPUT=''
 
 for FILE in *;
-   do OUTPUT=`cat $FILE | grep '8.2';`
+   do OUTPUT=`cat $FILE | grep $2;`
 done
 
-if [[ $OUTPUT =~ "8.2" ]];
+if [[ $OUTPUT =~ $2 ]];
 then
    echo "Compatible: Yes, Package version: $latestTag"
 else
