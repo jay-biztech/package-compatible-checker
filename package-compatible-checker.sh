@@ -39,7 +39,7 @@ for FILE in *;
    do OUTPUT=`cat $FILE | grep $2;`
 done
 
-if [[ $OUTPUT =~ $2 ]];
+if [[ $OUTPUT == *"$2"* ]];
 then
    echo "Compatible: Yes, Package version: $latestTag"
 else
