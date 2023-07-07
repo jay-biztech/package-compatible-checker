@@ -1,4 +1,4 @@
-# package-compatible-checker
+# Package compatibility checker
 
 ### Prerequisites
 1. Clone the repository
