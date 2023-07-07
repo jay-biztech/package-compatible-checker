@@ -20,7 +20,12 @@
      ./package-compatible-checker.sh doctrine/dbal 7.4
    ```
 
+   ![image](https://github.com/jay-biztech/package-compatible-checker/assets/74171859/7b56b59e-87e4-4ab3-9b0b-4a3eb096c1c1)
+
+
    2. This script is used to check that the which minimum pacakge version is compatible with the PHP version.
    ```sh
      ./min-package-version-compatible-checker.sh package_name php_version
    ```
+
+   
