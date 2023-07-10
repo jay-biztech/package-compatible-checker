@@ -51,7 +51,7 @@ do
          COMPLETION=$((COMPLETION+1))
       fi
 
-      #echo -ne "#########################    (${COMPLETION}%)\r"
+      echo -ne "#########################    (${COMPLETION}%)\r"
 
       for FILE in .github/workflows/*;
       do
