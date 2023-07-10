@@ -33,7 +33,8 @@
      ./min-packages-version-compatible-checker.sh php_version
    ```
 
-   ![image](https://github.com/jay-biztech/package-compatible-checker/assets/74171859/03ed5cd0-5ed9-48e4-b0e4-488eff3981ee)
+   ![image](https://github.com/jay-biztech/package-compatible-checker/assets/74171859/ec96aa54-3c0f-4e01-aaa8-1a3ee2319fee)
+
 
 
    
