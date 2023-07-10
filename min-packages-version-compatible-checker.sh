@@ -79,5 +79,7 @@ do
    if [ $TAG_SUPPORT == 'No' ]
    then 
       echo 'Package have not explicitly updated their support'
+      rm -rf $BASEDIR/temp
+      cd $BASEDIR
    fi
 done
