@@ -51,14 +51,14 @@ do
          COMPLETION=$((COMPLETION+1))
       fi
 
-      echo -ne "#########################    (${COMPLETION}%)\r"
+      #echo -ne "#########################    (${COMPLETION}%)\r"
 
       for FILE in .github/workflows/*;
       do
          if [[ -f $FILE ]]
          then
-            OUTPUT=`cat $FILE | grep $1`
-            
+           OUTPUT=`cat $FILE | grep $1`
+
             if [[ $OUTPUT != '' ]]
             then
                break
