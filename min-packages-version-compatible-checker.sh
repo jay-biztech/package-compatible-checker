@@ -1,7 +1,9 @@
 #!/bin/sh
 echo "PHP $1 Compatiblity checking..."
 
-PACKAGES=`composer show --self | grep -o '^[a-z/a-z]*'`
+PACKAGES=`composer show --self | grep -o '^[a-z/a-z-]*'`
+
+echo -ne '######    (1%)\r'
 
 for package in $PACKAGES
 do
@@ -18,12 +20,14 @@ do
    # Remove temp directory if exist
    rm -rf temp
 
+   echo -ne '########    (5%)\r'
+
    # Clone project into temp directory
    git clone $URL temp &> /dev/null
 
    wait
 
-   echo -ne '#############             (66%)\r'
+   echo -ne '#############    (10%)\r'
 
    # Go to temp directory
    cd temp
@@ -32,11 +36,22 @@ do
    git fetch --all --tags &> /dev/null
    TAG_SUPPORT='No' 
 
+   echo -ne '###################    (12%)\r'
+
+   COMPLETION=12
+
    for crt_tag in $(git tag)
    do
       git checkout $crt_tag &> /dev/null
       wait
       OUTPUT=''
+
+      if [ $COMPLETION -le 98 ]
+      then 
+         COMPLETION=$((COMPLETION+1))
+      fi
+
+      echo -ne "#########################    (${COMPLETION}%)\r"
 
       for FILE in .github/workflows/*;
       do
@@ -55,6 +70,7 @@ do
       then
          echo "Minimum compatible package version: $crt_tag, Compatible: Yes"
          TAG_SUPPORT='Yes'
+         rm -rf $BASEDIR/temp
          cd $BASEDIR
          break
       fi
