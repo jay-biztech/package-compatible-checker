@@ -28,4 +28,9 @@
      ./min-package-version-compatible-checker.sh package_name php_version
    ```
 
+   3. This script is used to check the minimum version compatible with all packages.
+   ```sh
+     ./min-packages-version-compatible-checker.sh php_version
+   ```
+
    
